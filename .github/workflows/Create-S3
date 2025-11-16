@@ -12,11 +12,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout repo
+      # Step 1: Checkout code
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      # Step 2: Configure AWS credentials
+      # Step 2: Configure AWS credentials (using AWS keys)
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
@@ -38,6 +38,6 @@ jobs:
             echo "Bucket $BUCKET_NAME already exists."
           fi
 
-      # Step 4: Verify bucket
+      # Step 4: Verify bucket creation
       - name: Verify bucket
         run: aws s3 ls "s3://$BUCKET_NAME"
